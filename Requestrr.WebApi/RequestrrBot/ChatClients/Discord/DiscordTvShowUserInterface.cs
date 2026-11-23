@@ -130,6 +130,13 @@ namespace Requestrr.WebApi.RequestrrBot.ChatClients.Discord
                     : Language.Current.DiscordCommandTvRequestSuccessSeason.ReplaceTokens(tvShow, requestedSeason.SeasonNumber);
 
             var successButton = new DiscordButtonComponent(ButtonStyle.Success, $"0/1/0", Language.Current.DiscordCommandRequestButtonSuccess);
+
+            // PH-Server fork: post the confirmation publicly and drop the private search message.
+            if (await DiscordPublicRequestMessage.TryPublishAsync(_interactionContext, message, embed, successButton))
+            {
+                return;
+            }
+
             var builder = (await AddPreviousDropdownsAsync(tvShow, new DiscordWebhookBuilder().AddEmbed(embed))).AddComponents(successButton).WithContent(message);
 
             await _interactionContext.EditOriginalResponseAsync(builder);

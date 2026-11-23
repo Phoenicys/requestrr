@@ -48,7 +48,7 @@ namespace Requestrr.WebApi.RequestrrBot
                 try
                 {
                     var settings = _serviceProvider.Get<DiscordSettingsProvider>().Provide();
-                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(settings.AutomaticallyPurgeCommandMessages).WithContent(Language.Current.DiscordCommandSending));
+                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(true) /* PH-Server fork: /request searches are always private */.WithContent(Language.Current.DiscordCommandSending));
 
                     var workFlow = _serviceProvider.Get<MovieWorkflowFactory>().CreateRequestingWorkflow(ctx.Interaction, [MOVIE_CATEGORY_ID]);
                     await workFlow.SearchMovieAsync(movieTitle.Trim());
@@ -69,7 +69,7 @@ namespace Requestrr.WebApi.RequestrrBot
                 try
                 {
                     var settings = _serviceProvider.Get<DiscordSettingsProvider>().Provide();
-                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(settings.AutomaticallyPurgeCommandMessages).WithContent(Language.Current.DiscordCommandSending));
+                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(true) /* PH-Server fork: /request searches are always private */.WithContent(Language.Current.DiscordCommandSending));
 
                     var workFlow = _serviceProvider.Get<MovieWorkflowFactory>().CreateRequestingWorkflow(ctx.Interaction, [MOVIE_CATEGORY_ID]);
                     await workFlow.SearchMovieAsync((int)theMovieDbId);
@@ -91,7 +91,7 @@ namespace Requestrr.WebApi.RequestrrBot
                 try
                 {
                     var settings = _serviceProvider.Get<DiscordSettingsProvider>().Provide();
-                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(settings.AutomaticallyPurgeCommandMessages).WithContent(Language.Current.DiscordCommandSending));
+                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(true) /* PH-Server fork: /request searches are always private */.WithContent(Language.Current.DiscordCommandSending));
 
                     var workFlow = _serviceProvider.Get<TvShowWorkflowFactory>().CreateRequestingWorkflow(ctx.Interaction, [TV_CATEGORY_ID]);
                     await workFlow.SearchTvShowAsync(tvShowTitle.Trim());
@@ -111,7 +111,7 @@ namespace Requestrr.WebApi.RequestrrBot
                 try
                 {
                     var settings = _serviceProvider.Get<DiscordSettingsProvider>().Provide();
-                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(settings.AutomaticallyPurgeCommandMessages).WithContent(Language.Current.DiscordCommandSending));
+                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(true) /* PH-Server fork: /request searches are always private */.WithContent(Language.Current.DiscordCommandSending));
 
                     var workFlow = _serviceProvider.Get<TvShowWorkflowFactory>().CreateRequestingWorkflow(ctx.Interaction, [TV_CATEGORY_ID]);
                     await workFlow.SearchTvShowAsync((int)tvDbID);
@@ -134,7 +134,7 @@ namespace Requestrr.WebApi.RequestrrBot
                 try
                 {
                     var settings = _serviceProvider.Get<DiscordSettingsProvider>().Provide();
-                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(settings.AutomaticallyPurgeCommandMessages).WithContent(Language.Current.DiscordCommandSending));
+                    await ctx.CreateResponseAsync(InteractionResponseType.ChannelMessageWithSource, new DiscordInteractionResponseBuilder().AsEphemeral(true) /* PH-Server fork: /request searches are always private */.WithContent(Language.Current.DiscordCommandSending));
 
                     var workFlow = _serviceProvider.Get<MusicWorkflowFactory>().CreateRequestingWorkflow(ctx.Interaction, [MUSIC_CATEGORY_ID]);
                     await workFlow.SearchMusicForArtistAsync(artistName.Trim());

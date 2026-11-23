@@ -259,8 +259,16 @@ namespace Requestrr.WebApi.RequestrrBot.ChatClients.Discord
         public async Task DisplayRequestSuccessAsync(Movie movie)
         {
             var successButton = new DiscordButtonComponent(ButtonStyle.Success, $"0/1/0", Language.Current.DiscordCommandRequestButtonSuccess);
+            var embed = await GenerateMovieDetailsAsync(movie, _movieSearcher);
+            var content = Language.Current.DiscordCommandMovieRequestSuccess.ReplaceTokens(movie);
 
-            var builder = (await AddPreviousDropdownsAsync(movie, new DiscordWebhookBuilder().AddEmbed(await GenerateMovieDetailsAsync(movie, _movieSearcher)))).AddComponents(successButton).WithContent(Language.Current.DiscordCommandMovieRequestSuccess.ReplaceTokens(movie));
+            // PH-Server fork: post the confirmation publicly and drop the private search message.
+            if (await DiscordPublicRequestMessage.TryPublishAsync(_interactionContext, content, embed, successButton))
+            {
+                return;
+            }
+
+            var builder = (await AddPreviousDropdownsAsync(movie, new DiscordWebhookBuilder().AddEmbed(embed))).AddComponents(successButton).WithContent(content);
             await _interactionContext.EditOriginalResponseAsync(builder);
         }
 
