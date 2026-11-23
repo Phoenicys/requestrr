@@ -33,6 +33,8 @@ namespace Requestrr.WebApi.Controllers.ChatClients
 
         public bool AutomaticallyPurgeCommandMessages { get; set; }
 
+        public bool PublicRequestConfirmations { get; set; }
+
         public string Language { get; set; }
 
         public string[] AvailableLanguages { get; set; }

@@ -44,6 +44,7 @@ namespace Requestrr.WebApi.Controllers.ChatClients
                 NotificationMode = _chatClientsSettings.Discord.NotificationMode,
                 NotificationChannels = _chatClientsSettings.Discord.NotificationChannels ?? Array.Empty<string>(),
                 AutomaticallyPurgeCommandMessages = _chatClientsSettings.Discord.AutomaticallyPurgeCommandMessages,
+                PublicRequestConfirmations = _chatClientsSettings.Discord.PublicRequestConfirmations,
                 Language = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(_chatClientsSettings.Language.ToLower()),
                 AvailableLanguages = GetLanguages()
             });
@@ -162,6 +163,7 @@ namespace Requestrr.WebApi.Controllers.ChatClients
             _chatClientsSettings.Discord.NotificationMode = model.NotificationMode;
             _chatClientsSettings.Discord.NotificationChannels = (model.NotificationChannels ?? Array.Empty<string>()).Where(x => !string.IsNullOrWhiteSpace(x)).Select(x => x.Trim()).ToArray(); ;
             _chatClientsSettings.Discord.AutomaticallyPurgeCommandMessages = model.AutomaticallyPurgeCommandMessages;
+            _chatClientsSettings.Discord.PublicRequestConfirmations = model.PublicRequestConfirmations;
             _chatClientsSettings.Language = model.Language;
 
             _botClientsSettings.Client = model.Client;

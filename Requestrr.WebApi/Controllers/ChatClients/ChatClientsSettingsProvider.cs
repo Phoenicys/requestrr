@@ -23,6 +23,7 @@ namespace Requestrr.WebApi.Controllers.ChatClients
                 NotificationMode = (string)settings.ChatClients.Discord.NotificationMode,
                 NotificationChannels = settings.ChatClients.Discord.NotificationChannels.ToObject<string[]>(),
                 AutomaticallyPurgeCommandMessages = (bool)settings.ChatClients.Discord.AutomaticallyPurgeCommandMessages,
+                PublicRequestConfirmations = (bool?)settings.ChatClients.Discord.PublicRequestConfirmations ?? true,
             };
 
             return new ChatClientsSettings

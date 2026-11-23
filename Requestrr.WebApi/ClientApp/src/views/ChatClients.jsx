@@ -72,6 +72,7 @@ function ChatClients(props) {
   const [notificationMode, setNotificationMode] = useState("PrivateMessages");
   const [notificationChannels, setNotificationChannels] = useState([]);
   const [automaticallyPurgeCommandMessages, setAutomaticallyPurgeCommandMessages] = useState(true);
+  const [publicRequestConfirmations, setPublicRequestConfirmations] = useState(true);
   const [language, setLanguage] = useState("english");
   const [availableLanguages, setAvailableLanguages] = useState([]);
 
@@ -95,6 +96,7 @@ function ChatClients(props) {
         setNotificationMode(data.payload.notificationMode);
         setNotificationChannels(data.payload.notificationChannels);
         setAutomaticallyPurgeCommandMessages(data.payload.automaticallyPurgeCommandMessages);
+        setPublicRequestConfirmations(data.payload.publicRequestConfirmations);
         setLanguage(data.payload.language);
         setAvailableLanguages(data.payload.availableLanguages);
       });
@@ -197,6 +199,7 @@ function ChatClients(props) {
           notificationMode: notificationMode,
           notificationChannels: notificationChannels,
           automaticallyPurgeCommandMessages: automaticallyPurgeCommandMessages,
+          publicRequestConfirmations: publicRequestConfirmations,
           language: language,
         }))
           .then(data => {
@@ -581,6 +584,25 @@ function ChatClients(props) {
                             htmlFor="deleteRequestMessages"
                           >
                             <span className="text-muted">Hide slash command request messages in channels.</span>
+                          </label>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="12">
+                        <FormGroup className="custom-control custom-control-alternative custom-checkbox mb-3">
+                          <Input
+                            className="custom-control-input"
+                            id="publicRequestConfirmations"
+                            type="checkbox"
+                            onChange={e => { setPublicRequestConfirmations(!publicRequestConfirmations); }}
+                            checked={publicRequestConfirmations}
+                          />
+                          <label
+                            className="custom-control-label"
+                            htmlFor="publicRequestConfirmations"
+                          >
+                            <span className="text-muted">Keep request searches private and post the confirmation publicly in the channel once a request is sent.</span>
                           </label>
                         </FormGroup>
                       </Col>

@@ -6,9 +6,10 @@ using DSharpPlus.Entities;
 namespace Requestrr.WebApi.RequestrrBot.ChatClients.Discord
 {
     /// <summary>
-    /// PH-Server fork: /request searches are ephemeral (only the requester sees them and can
-    /// dismiss them). Once a request is sent, the final card is posted publicly in the channel
-    /// and the private one is deleted, so everyone can see what each person requested.
+    /// PH-Server fork, setting "PublicRequestConfirmations": /request searches are ephemeral
+    /// (only the requester sees them and can dismiss them). Once a request is sent, the final card
+    /// is posted publicly in the channel and the private one is deleted, so everyone can see what
+    /// each person requested. With the setting off, upstream behavior applies.
     /// </summary>
     public static class DiscordPublicRequestMessage
     {
@@ -21,6 +22,11 @@ namespace Requestrr.WebApi.RequestrrBot.ChatClients.Discord
         {
             try
             {
+                if (!new DiscordSettingsProvider().Provide().PublicRequestConfirmations)
+                {
+                    return false;
+                }
+
                 var original = await interaction.GetOriginalResponseAsync();
 
                 if (original?.Flags == null || !original.Flags.Value.HasFlag(MessageFlags.Ephemeral))

@@ -37,6 +37,8 @@ namespace Requestrr.WebApi.RequestrrBot.ChatClients.Discord
                 NotificationMode = settings.ChatClients.Discord.NotificationMode,
                 NotificationChannels = settings.ChatClients.Discord.NotificationChannels.ToObject<string[]>(),
                 AutomaticallyPurgeCommandMessages = settings.ChatClients.Discord.AutomaticallyPurgeCommandMessages,
+                // PH-Server fork. Defaults to true when the key is missing from settings.json.
+                PublicRequestConfirmations = (bool?)settings.ChatClients.Discord.PublicRequestConfirmations ?? true,
             };
         }
 

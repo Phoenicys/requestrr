@@ -17,7 +17,8 @@
       "AutomaticallyNotifyRequesters": true,
       "NotificationMode": "PrivateMessages",
       "NotificationChannels": [],
-      "AutomaticallyPurgeCommandMessages": true
+      "AutomaticallyPurgeCommandMessages": true,
+      "PublicRequestConfirmations": true
     },
     "Language": "english"
   },
